@@ -49,19 +49,16 @@ const list = [
 ]
 export default class ListJAV extends Component {
     state = {
-        model: list[0],
-        ArrayIdol: []
+        model: null,
+        ArrayIdol:[]
     }
-    handleDetail = (ClickDeltail) => {
+    handleDetail = (idol) => {
         // console.log(idol);
-        this.setState({model: ClickDeltail})
+        if(idol){
+            this.setState({model: idol})
+        } 
+        
        
-    }
-
-    ClickDeltail =(idol)=>{
-        if(this.handleDetail===1){
-            return idol;
-        }
     }
     addCartIdol=(idol)=>{
         // console.log(idol);
@@ -72,6 +69,7 @@ export default class ListJAV extends Component {
             id: idol.id
         }
         let arrCart1=[...this.state.ArrayIdol]
+
         arrCart1.push(newidol)
         this.setState({ArrayIdol: arrCart1}, ()=>{
             console.log(this.state.ArrayIdol);
@@ -89,18 +87,18 @@ export default class ListJAV extends Component {
                 </div>
             )
         })
-    }
-  
+    } 
     render() {
         return (
             <div>
                 <div className="container">
                     <div className="row">
                         {this.renderJAV()}
-                        <DetailIdol model= {this.state.model}  addCartIdol= {this.addCartIdol}/>
-                        <Cart ArrayIdol= {this.state.ArrayIdol} model= {this.state.model}/>
+                        {this.state.model==null ? '': <DetailIdol model= {this.state.model}  addCartIdol= {this.addCartIdol}/>}
+                        {this.state.ArrayIdol==0? '':<Cart ArrayIdol= {this.state.ArrayIdol} model= {this.state.model}/>}
+                        
                     </div>
-                </div>
+                </div> 
             </div>
         )
     }

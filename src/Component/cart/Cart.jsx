@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class cart extends Component {
    
     renderCart=()=>{
-        console.log(this.props.ArrayIdol[3]);
+        
      return this.props.ArrayIdol.map((item)=>{
             return(
                 <div className="layout-inline row">

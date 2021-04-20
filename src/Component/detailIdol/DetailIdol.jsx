@@ -7,7 +7,6 @@ export default class DetailIdol extends Component {
         let{model,addCartIdol}= this.props
         return (
             <div>
-                <Header />
                 <main className="mt-5 pt-4">
                     <div className="container dark-grey-text mt-5">
                         <div className="row wow fadeIn">
@@ -49,7 +48,7 @@ export default class DetailIdol extends Component {
                     </div></main>
 
 
-                <Footer />
+                
             </div>
 
         )
