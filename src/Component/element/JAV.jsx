@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 export default class JAV extends Component {
 
     render() {
-        console.log(this.props.item);
+        // console.log(this.props.item);
+        let {item,handleDetail} = this.props
         /// item là object///
         return (
             <div >
@@ -12,6 +13,7 @@ export default class JAV extends Component {
                     <div className="card-body">
                         <h4 className="card-title">{this.props.item.name}</h4>
                         <p className="card-text">{this.props.item.age}</p>
+                        <a href="#" className="btn btn-info" role="button"  onClick={()=>{handleDetail(item)}} >See information Idol </a>
                     </div>
                 </div>
             </div>

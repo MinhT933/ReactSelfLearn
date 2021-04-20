@@ -6,76 +6,103 @@ import SaoriWatanabe from '../../Carosel_JAV/SaoriWatanabe-p1.jpg';
 import YuaMikami from '../../Carosel_JAV/YuaMikami.jpg';
 import SerinaHayakawa from '../../Carosel_JAV/SerinaHayakawa.jpg';
 import JAV from './JAV';
+import DetailIdol from '../detailIdol/DetailIdol';
+import Cart from '../cart/Cart';
+const list = [
+    {
+        name: 'emi fukuda',
+        age: 21,
+        img: img1,
+        id: 1
+    },
+    {
+        name: 'Mia Nanasawa',
+        age: 22,
+        img: MiaNanasawa,
+        id: 2
+    },
+    {
+        name: 'Noa Mizuhara',
+        age: 23,
+        img: NoaMizuhara,
+        id : 3
 
+    },
+    {
+        name: 'Saori Watanabe',
+        age: 23,
+        img: SaoriWatanabe,
+        id: 4
+    },
+    {
+        name: 'Yua Mikami',
+        age: 23,
+        img: YuaMikami,
+        id: 5
+    },
+    {
+        name: 'Serina Hayakawa',
+        age: 23,
+        img: SerinaHayakawa,
+        id: 6
+    }
+]
 export default class ListJAV extends Component {
-    listJAV = [
-        {
-            name: 'emi fukuda',
-            age: 21,
-            img: img1
+    state = {
+        model: list[0],
+        ArrayIdol: []
+    }
+    handleDetail = (ClickDeltail) => {
+        // console.log(idol);
+        this.setState({model: ClickDeltail})
+       
+    }
 
-
-        },
-        {
-            name: 'Mia Nanasawa',
-            age: 22,
-            img: MiaNanasawa
-
-
-        },
-        {
-            name: 'Noa Mizuhara',
-            age: 23,
-            img: NoaMizuhara
-
-
-        },
-        {
-            name: 'Saori Watanabe',
-            age: 23,
-            img: SaoriWatanabe
-
-
-        },
-        {
-            name: 'Yua Mikami',
-            age: 23,
-            img: YuaMikami
-
-
-        },
-        {
-            name: 'Serina Hayakawa',
-            age: 23,
-            img: SerinaHayakawa
-
-
+    ClickDeltail =(idol)=>{
+        if(this.handleDetail===1){
+            return idol;
         }
+    }
+    addCartIdol=(idol)=>{
+        // console.log(idol);
+        const newidol={
+            name: idol.name,
+            age: idol.age,
+            img: idol.img,
+            id: idol.id
+        }
+        let arrCart1=[...this.state.ArrayIdol]
+        arrCart1.push(newidol)
+        this.setState({ArrayIdol: arrCart1}, ()=>{
+            console.log(this.state.ArrayIdol);
+            
+        })
 
-    ]
+        
+    }
+   
     renderJAV = () => {
-        // let {handleDetail, data , addCart} = this.props
-
-        return this.listJAV.map((item) => {
+        return list.map((item) => {
             return (
-
                 <div className="col-4">
-                    <JAV item={item} />
+                    <JAV item={item}  handleDetail={this.handleDetail}/>
                 </div>
             )
         })
     }
+  
     render() {
         return (
             <div>
-                {/* <JAV/> */}
                 <div className="container">
                     <div className="row">
                         {this.renderJAV()}
+                        <DetailIdol model= {this.state.model}  addCartIdol= {this.addCartIdol}/>
+                        <Cart ArrayIdol= {this.state.ArrayIdol} model= {this.state.model}/>
                     </div>
                 </div>
-
             </div>
         )
     }
+   
 }

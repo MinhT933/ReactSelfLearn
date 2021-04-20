@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './Nav.css'
-
 export default class Navbar extends Component {
     render() {
         return (
@@ -35,7 +34,6 @@ export default class Navbar extends Component {
                     </div>
                 </nav>
             </div>
-
         )
     }
 }
