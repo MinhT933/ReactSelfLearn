@@ -60,17 +60,59 @@ export default class ListJAV extends Component {
         
        
     }
+    findIndexIdol = (id)=>{
+         return this.state.ArrayIdol.findIndex((item)=>{
+                 return item.id ===id 
+         })
+         }
+    
     addCartIdol=(idol)=>{
         // console.log(idol);
         const newidol={
             name: idol.name,
             age: idol.age,
             img: idol.img,
-            id: idol.id
+            id: idol.id,
+            countNumIdol:1
         }
         let arrCart1=[...this.state.ArrayIdol]
+        const index = this.findIndexIdol(newidol.id)
+        if(index===-1){
+            arrCart1.push(newidol)
+        }else{
+            arrCart1[index].countNumIdol+=1;
+        }
 
-        arrCart1.push(newidol)
+       
+        this.setState({ArrayIdol: arrCart1}, ()=>{
+            console.log(this.state.ArrayIdol);
+            
+        })
+
+        
+    }
+    minusCartIdol=(idol)=>{
+        // console.log(idol);
+        const newidol={
+            name: idol.name,
+            age: idol.age,
+            img: idol.img,
+            id: idol.id,
+            countNumIdol:1
+        }
+        let arrCart1=[...this.state.ArrayIdol]
+        const index = this.findIndexIdol(newidol.id)
+        if(index === -1){
+            // arrCart1.remove(newidol)
+           arrCart1.splice(newidol,1)
+        }else{
+            arrCart1[index].countNumIdol-=1;
+            if(arrCart1[index].countNumIdol===0){
+                arrCart1.splice(newidol,1)
+            }
+        }
+
+       
         this.setState({ArrayIdol: arrCart1}, ()=>{
             console.log(this.state.ArrayIdol);
             
@@ -79,11 +121,12 @@ export default class ListJAV extends Component {
         
     }
    
+
     renderJAV = () => {
         return list.map((item) => {
             return (
                 <div className="col-4">
-                    <JAV item={item}  handleDetail={this.handleDetail}/>
+                    <JAV item={item}  handleDetail={this.handleDetail} addCartIdol= {this.addCartIdol}/>
                 </div>
             )
         })
@@ -95,7 +138,7 @@ export default class ListJAV extends Component {
                     <div className="row">
                         {this.renderJAV()}
                         {this.state.model==null ? '': <DetailIdol model= {this.state.model}  addCartIdol= {this.addCartIdol}/>}
-                        {this.state.ArrayIdol==0? '':<Cart ArrayIdol= {this.state.ArrayIdol} model= {this.state.model}/>}
+                        {this.state.ArrayIdol==0? '':<Cart ArrayIdol= {this.state.ArrayIdol} model= {this.state.model} addCartIdol= {this.addCartIdol} minusCartIdol= {this.minusCartIdol}/>}
                         
                     </div>
                 </div> 

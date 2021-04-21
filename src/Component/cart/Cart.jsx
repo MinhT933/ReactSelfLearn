@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 
 export default class cart extends Component {
+    // SumIdol =()=>{
+    //     return this.props.ArrayIdol.reduce((sum,item)=>{
+    //         return sum += item.countNumIdol;
+
+    //     })
+    // }
    
     renderCart=()=>{
         
@@ -15,9 +21,9 @@ export default class cart extends Component {
                     <p>{item.age}</p>
                 </div>
                 <div className="col col-qty layout-inline">
-                <button type="button" class="btn btn-primary">+</button>
-                         <div>3</div>
-                <button type="button" class="btn btn-primary">-</button>
+                <button type="button" class="btn btn-primary" onClick={()=>{this.props.addCartIdol(item)}}>+</button>
+                         <div>{item.countNumIdol}</div>
+                <button type="button" class="btn btn-primary" onClick={()=>{this.props.minusCartIdol(item)}}>-</button>
                 </div>
                 <div className="col col-vat col-numeric">
                     <p>£2.95</p>
